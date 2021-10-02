@@ -4,8 +4,10 @@ import 'package:http/http.dart' as http;
 import 'package:order_detail/ORDER_DETAIL.dart';
 
 import 'package:order_detail/apiServices.dart';
+
+import 'ModalClass.dart';
 class DataFromApi extends StatefulWidget {
-  List<Use> users = [];
+  List<Order> users = [];
   var use;
   DataFromApi({Key? key}) : super(key: key);
 
@@ -34,6 +36,9 @@ class _DataFromApiState extends State<DataFromApi> {
      );
      if(response.statusCode==200)
      {
+       var productlis = Order.fromJsonList(json.decode(response.body));
+       List<Order> users = productlis;
+
        print("getCustomerOrders successfully response"+response.body);
        var jsonData= jsonDecode(response.body);
        print(jsonData);
@@ -41,14 +46,14 @@ class _DataFromApiState extends State<DataFromApi> {
        for(var u in jsonData){
          print("loop1");
 
-         Use user = Use.fromJson(u);
+         Order user = Order.fromJson(u);
          print("loop2");
         /* try {
            print(widget.users[0]);
          }catch(e){
            print(e.toString());
          }*/
-         widget.users.add(user);
+         widget.users=users;
          print("loop3");
        }
        print("user model size after"+ widget.users.length.toString());
@@ -104,14 +109,14 @@ class _DataFromApiState extends State<DataFromApi> {
                                 widget.users[index].id.toString(),style: TextStyle(color: Colors.black
                             ),
                             ),
-                            subtitle: Text("Status "+
-                                widget.users[index].status+"   Total: Rs. "+widget.users[index].total,style: TextStyle(color: Colors.black38,),
+                            subtitle: Text("Status "
+                             //   widget.users[index].status+"   Total: Rs. "+widget.users[index].total,style: TextStyle(color: Colors.black38,),
                             ),
                             isThreeLine: true,
                             onTap: (){
                               Navigator.push(
                                 context,
-                                MaterialPageRoute(builder: (context) => orderDetail(id: widget.users[index].id.toString() )),
+                                MaterialPageRoute(builder: (context) => orderDetail(use1: widget.users[index] )),
                               );
                             },
 

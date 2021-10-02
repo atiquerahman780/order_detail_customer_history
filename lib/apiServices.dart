@@ -6,9 +6,9 @@ String useToJson(List<Use> data) => json.encode(List<dynamic>.from(data.map((x) 
 
 class Use {
   Use({
-    required this.id,
+    this.id,
     //required this.parentId,
-    required this.status,
+     this.status,
     /*required this.currency,
     required this.version,
     required this.pricesIncludeTax,
@@ -19,7 +19,7 @@ class Use {
     required this.shippingTotal,
     required this.shippingTax,
     required this.cartTax,*/
-    required this.total,
+    this.total,
     /*required this.totalTax,
     required this.customerId,
     required this.orderKey,
@@ -37,7 +37,7 @@ class Use {
     required this.cartHash,
     required this.number,
     required this.metaData,*/
-    required this.lineItems,
+     this.lineItems,
     /*required this.taxLines,
     required this.shippingLines,
     required this.feeLines,
@@ -48,12 +48,12 @@ class Use {
     this.dateCompletedGmt,
     this.datePaidGmt,
     required this.currencySymbol,*/
-    required this.links,
+  //   this.links,
   });
 
-  int id;
+  int? id;
   // int parentId;
-  String status;
+  String ?status;
   /*String currency;
   String version;
   bool pricesIncludeTax;
@@ -64,7 +64,7 @@ class Use {
   String shippingTotal;
   String shippingTax;
   String cartTax;*/
-  String total;
+  String ?total;
   /*String totalTax;
   int customerId;
   String orderKey;
@@ -82,7 +82,7 @@ class Use {
   String cartHash;
   String number;
   List<MetaDatum> metaData;*/
-  List<LineItem> lineItems;
+  List<dynamic> ?lineItems;
   /* List<dynamic> taxLines;
   List<dynamic> shippingLines;
   List<dynamic> feeLines;
@@ -93,7 +93,7 @@ class Use {
   dynamic dateCompletedGmt;
   dynamic datePaidGmt;
   String currencySymbol;*/
-  Links links;
+//  Links links;
 
   factory Use.fromJson(Map<String, dynamic> json) => Use(
     id: json["id"],
@@ -128,7 +128,7 @@ class Use {
     cartHash: json["cart_hash"],
     number: json["number"],
     metaData: List<MetaDatum>.from(json["meta_data"].map((x) => MetaDatum.fromJson(x))),*/
-    lineItems: List<LineItem>.from(json["line_items"].map((x) => LineItem.fromJson(x))),
+    lineItems: List<dynamic>.from(json["line_items"].map((x) => (x))),
     /*taxLines: List<dynamic>.from(json["tax_lines"].map((x) => x)),
     shippingLines: List<dynamic>.from(json["shipping_lines"].map((x) => x)),
     feeLines: List<dynamic>.from(json["fee_lines"].map((x) => x)),
@@ -139,7 +139,7 @@ class Use {
     dateCompletedGmt: json["date_completed_gmt"],
     datePaidGmt: json["date_paid_gmt"],
     currencySymbol: json["currency_symbol"],*/
-    links: Links.fromJson(json["_links"]),
+//    links: Links.fromJson(json["_links"]),
   );
 
   Map<String, dynamic> toJson() => {
@@ -174,7 +174,7 @@ class Use {
     "cart_hash": cartHash,
     "number": number,
     "meta_data": List<dynamic>.from(metaData.map((x) => x.toJson())),*/
-    "line_items": List<dynamic>.from(lineItems.map((x) => x.toJson())),
+    "line_items": List<dynamic>.from(lineItems!.map((x) => x.toJson())),
     /*"tax_lines": List<dynamic>.from(taxLines.map((x) => x)),
     "shipping_lines": List<dynamic>.from(shippingLines.map((x) => x)),
     "fee_lines": List<dynamic>.from(feeLines.map((x) => x)),
@@ -185,7 +185,7 @@ class Use {
     "date_completed_gmt": dateCompletedGmt,
     "date_paid_gmt": datePaidGmt,
     "currency_symbol": currencySymbol,*/
-    "_links": links.toJson(),
+//    "_links": links.toJson(),
   };
 }
 
@@ -247,38 +247,39 @@ class Ing {
 
 class LineItem {
   LineItem({
-    required this.id,
-    required this.name,
-    required this.productId,
-    required this.variationId,
-    required this.quantity,
-    required this.taxClass,
-    required this.subtotal,
-    required this.subtotalTax,
-    required this.total,
-    required this.totalTax,
+    this.id,
+    this.name,
+    this.productId,
+    this.variationId,
+    this.quantity,
+    required
+    this.taxClass,
+    this.subtotal,
+    this.subtotalTax,
+    this.total,
+    this.totalTax,
    // required this.taxes,
     //required this.metaData,
-    required this.sku,
-    required this.price,
-    this.parentName,
+    this.sku,
+    this.price,
+   // this.parentName,
   });
 
-  int id;
-  String name;
-  int productId;
-  int variationId;
-  int quantity;
-  String taxClass;
-  String subtotal;
-  String subtotalTax;
-  String total;
-  String totalTax;
+  int ?id;
+  String ?name;
+  int ?productId;
+  int ?variationId;
+  int ?quantity;
+  String ?taxClass;
+  String ?subtotal;
+  String ?subtotalTax;
+  String ?total;
+  String ?totalTax;
  // List<dynamic> taxes;
   //List<dynamic> metaData;
-  String sku;
-  int price;
-  dynamic parentName;
+  String ?sku;
+  int ?price;
+ // dynamic parentName;
 
   factory LineItem.fromJson(Map<String, dynamic> json) => LineItem(
     id: json["id"],
@@ -295,7 +296,7 @@ class LineItem {
    // metaData: List<dynamic>.from(json["meta_data"].map((x) => x)),
     sku: json["sku"],
     price: json["price"],
-    parentName: json["parent_name"],
+ //   parentName: json["parent_name"],
   );
 
   Map<String, dynamic> toJson() => {
@@ -313,7 +314,7 @@ class LineItem {
    // "meta_data": List<dynamic>.from(metaData.map((x) => x)),
     "sku": sku,
     "price": price,
-    "parent_name": parentName,
+ //   "parent_name": parentName,
   };
 }
 
