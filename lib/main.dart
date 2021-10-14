@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:order_detail/ModelClass2.dart';
 import 'package:order_detail/ORDER.dart';
 
 
@@ -24,7 +25,7 @@ class MyApp extends StatelessWidget {
         // is not restarted.
         primarySwatch: Colors.blue,
       ),
-      home: DataFromApi(),
+      home: DatatoApi(),
     );
   }
 }

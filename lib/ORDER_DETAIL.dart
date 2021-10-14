@@ -28,12 +28,7 @@ class _orderDetailState extends State<orderDetail> {
     for(int i=0;i<lineItem.length;i++){
       int a=int.parse(widget.use1.lineItems![i].subtotal.toString());
       //print("a//a"+a.toString());
-
-
       sum=sum+a;
-
-
-
       String l=sum.toString();
 
     }
